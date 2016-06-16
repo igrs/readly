@@ -3,7 +3,3 @@ elixir:
   - 1.2.5
 otp_release:
   - 18.3
-before_script:
-  - mix local.hex --force
-  - mix.deps get
-script: mix test
