@@ -26,7 +26,9 @@ defmodule Readly do
   end
 
   @doc """
-  define readonly
+  define readonly macro
+  - Put map to module attributes
+  - Define specific function
   """
   defmacro readonly(item, function_name) do
     func_name = cond do
