@@ -31,8 +31,6 @@ defmodule Readly do
       user = Repo.one(User)
       user.gender == Gender.woman
 
-  ## summary
-
   """
 
   @doc false
