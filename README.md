@@ -1,6 +1,7 @@
 # Readly
 [![Build Status](https://travis-ci.org/igrs/readly.svg?branch=master)](https://travis-ci.org/igrs/readly)
 [![hex.pm version](https://img.shields.io/hexpm/v/readly.svg)](https://hex.pm/packages/readly)
+[![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 
 Readly is a simple module that allow you to create readonly datasource module easily.
 it is inspired by [ActiveHash](https://github.com/zilkey/active_hash).
