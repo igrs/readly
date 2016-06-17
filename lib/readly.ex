@@ -10,6 +10,29 @@ defmodule Readly do
         readonly %{id: 1, name: "Woman"}, :woman
         readonly %{id: 1, name: "Trans"}, :trans
       end
+  
+  use with ecto
+
+      defmodule User do
+        use Ecto.Schema
+        import Ecto.Changeset
+
+        schema "users" do
+          field :name, :string
+          field :gender, Gender
+        end
+
+        def changeset(user, params \\ :invalid) do
+          user
+          |> cast(params, ~w(name gender), ~w())
+        end
+      end
+
+      user = Repo.one(User)
+      user.gender == Gender.woman
+
+  ## summary
+
   """
 
   @doc false
@@ -57,16 +80,47 @@ defmodule Readly do
 
       def reverse, do: all |> Enum.reverse
 
-      def get(nil), do: nil
-      def get(id) do
+      def get(id) when is_integer(id) do
         list
         |> Enum.find(&(&1.id == id))
       end
+      def get(_), do: nil
 
       defp list do
         @readley_datasource
         |> Enum.map(fn source -> struct(unquote(env.module), source) end)
       end
+
+      # Ecto.Type imple
+      def type, do: :integer
+
+      def cast(integer) when is_integer(integer), do: do_get(integer)
+      def cast(string) when is_bitstring(string) do
+        case Integer.parse(string) do
+          {integer, _} -> do_get(integer)
+          _ -> :error
+        end
+      end
+      def cast(%__MODULE__{} = datasource), do: {:ok, datasource}
+      def cast(_), do: :error
+
+      defp do_get(integer) do
+        case get(integer) do
+          %__MODULE__{} = datasource -> {:ok, datasource}
+          _ -> :error
+        end
+      end
+
+      def load(integer) when is_integer(integer) do
+        case get(integer) do
+          %__MODULE__{} = datasource -> {:ok, datasource}
+          _ -> :error
+        end
+      end
+      def load(_), do: :error
+
+      def dump(%__MODULE__{} = datasource), do: {:ok, datasource.id}
+      def dump(_), do: :error
     end
   end
 end
