@@ -10,6 +10,28 @@ defmodule Readly do
         readonly %{id: 1, name: "Woman"}, :woman
         readonly %{id: 1, name: "Trans"}, :trans
       end
+  
+  use with ecto
+
+      defmodule User do
+        use Ecto.Schema
+        import Ecto.Changeset
+
+        schema "users" do
+          field :name, :string
+          field :gender, Gender
+        end
+
+        def changeset(user, params \\ :invalid) do
+          user
+          |> cast(params, ~w(name gender), ~w())
+        end
+      end
+
+      user = Repo.one(User)
+      user.gender == Gender.woman
+
+  ## summary
 
   """
 
