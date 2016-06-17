@@ -68,5 +68,5 @@ NOTICE: Readly not use Ecto.Type behavior just implement function (type cast loa
 
 ## TODO
 
-- [+] Implement [Ecto](https://github.com/elixir-ecto/ecto) type
+- [x] Implement [Ecto](https://github.com/elixir-ecto/ecto) type
 - [ ] Ensure id and function name is unique
