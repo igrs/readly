@@ -42,4 +42,5 @@ Gender.get(1)  # %Gender{id: 1, name: "Man"}
 
 ## TODO
 
-- [ ] Implement [Ecto]() type
+- [ ] Implement [Ecto](https://github.com/elixir-ecto/ecto) type
+- [ ] Ensure id is unique
