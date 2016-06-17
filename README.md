@@ -42,7 +42,31 @@ Gender.reverse # [%Gender{id: 3, name: "Trans"}, %Gender{id: 2, name: "Woman"}, 
 Gender.get(1)  # %Gender{id: 1, name: "Man"}
 ```
 
+with Ecto
+
+```elixir
+defmodule User do
+  use Ecto.Schema
+  import Ecto.Changeset
+
+  schema "users" do
+    field :name, :string
+    field :gender, Gender
+  end
+
+  def changeset(user, params \\ :invalid) do
+    user
+    |> cast(params, ~w(name gender), ~w())
+  end
+end
+
+user = Repo.one(User)
+user.gender == Gender.woman
+```
+
+NOTICE: Readly not use Ecto.Type behavior just implement function (type cast load dump)
+
 ## TODO
 
-- [ ] Implement [Ecto](https://github.com/elixir-ecto/ecto) type
+- [+] Implement [Ecto](https://github.com/elixir-ecto/ecto) type
 - [ ] Ensure id and function name is unique
