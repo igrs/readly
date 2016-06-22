@@ -4,8 +4,8 @@ defmodule Readly.Mixfile do
   def project do
     [
       app: :readly,
-      version: "0.0.3",
-      elixir: "~> 1.2",
+      version: "0.1.0",
+      elixir: "~> 1.3",
       description: "Readly is a simple module that allow you to create readonly datasource module easily.",
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,

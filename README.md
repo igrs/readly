@@ -10,17 +10,29 @@ it is inspired by [ActiveHash](https://github.com/zilkey/active_hash).
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
 
-  1. Add readly to your list of dependencies in `mix.exs`:
+  * Add readly to your list of dependencies in `mix.exs`: 
 
-        def deps do
-          [{:readly, "~> 0.0.2"}]
-        end
+  elixir version >= 1.3
+  ```elixir
+  def deps do
+    [{:readly, "~> 0.1.0"}]
+  end
+  ```
 
-  2. Ensure readly is started before your application:
+  elixir version <= 1.2
+  ```elixir
+  def deps do
+    [{:readly, "~> 0.0.4"}]
+  end
+  ```
+        
+  * Ensure readly is started before your application:
 
-        def application do
-          [applications: [:readly]]
-        end
+  ```elixir
+  def application do
+    [applications: [:readly]]
+  end
+  ```
 
 ## Example
 ```elixir
@@ -28,7 +40,7 @@ defmodule Gender do
   # Use with struct
   use Readly, struct: %{id: nil, name: ""}
 
-  # First arg is datasource. (id is required)
+  # First arg is datasource. (id is enforce_keys)
   # Second arg is a function name.(both Atom and String are OK)
   readonly %{id: 1, name: "Man"}, "man"
   readonly %{id: 2, name: "Woman"}, :woman
@@ -68,7 +80,6 @@ user.gender == Gender.woman
 
 NOTICE: Readly not use Ecto.Type behavior just implement function (type cast load dump)
 
-## TODO
 
-- [x] Implement [Ecto](https://github.com/elixir-ecto/ecto) type
-- [ ] Ensure id and function name are unique
+## LICENSE
+See [LICENSE](https://github.com/igrs/readly/blob/master/LICENSE)
