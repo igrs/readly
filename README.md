@@ -13,7 +13,7 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
   1. Add readly to your list of dependencies in `mix.exs`:
 
         def deps do
-          [{:readly, "~> 0.0.2"}]
+          [{:readly, "~> 0.0.4"}]
         end
 
   2. Ensure readly is started before your application:
