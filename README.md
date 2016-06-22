@@ -68,7 +68,5 @@ user.gender == Gender.woman
 
 NOTICE: Readly not use Ecto.Type behavior just implement function (type cast load dump)
 
-## TODO
-
-- [x] Implement [Ecto](https://github.com/elixir-ecto/ecto) type
-- [ ] Ensure id and function name are unique
+## LICENSE
+See [LICENSE](https://github.com/igrs/readly/blob/master/LICENSE)
