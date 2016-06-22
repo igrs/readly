@@ -35,7 +35,7 @@ defmodule Readly do
 
   @doc false
   defmacro __using__([struct: struct]) do
-    quote do
+    quote location: :keep do
       import Readly, only: [readonly: 2]
 
       defstruct Enum.map(unquote(struct), &(&1))
@@ -59,7 +59,7 @@ defmodule Readly do
     end
 
     if func_name do
-      quote do
+      quote location: :keep do
         Module.put_attribute(__MODULE__, :readley_datasource, unquote(item))
         def unquote(func_name)() do
           struct(__MODULE__, unquote(item))
@@ -70,7 +70,7 @@ defmodule Readly do
 
   @doc false
   defmacro __before_compile__(env) do
-    quote do
+    quote location: :keep do
       def all do
         list
         |> Enum.sort(fn a, b -> a.id < b.id end)
@@ -107,6 +107,11 @@ defmodule Readly do
           %__MODULE__{} = datasource -> {:ok, datasource}
           _ -> :error
         end
+      end
+
+      def options(label, value) do
+        all
+        |> Enum.map(fn d -> {Map.get(d, label), Map.get(d, value)} end)
       end
 
       def load(integer) when is_integer(integer) do

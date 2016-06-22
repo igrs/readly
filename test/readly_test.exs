@@ -134,4 +134,8 @@ defmodule ReadlyTest do
     cs = User.changeset(%User{}, %{name: "igrs", language: 5})
     assert cs.errors == [language: "is invalid"]
   end
+
+  test "ensure options function" do
+    assert Language.options(:ja, :id) == [{"英語", 1}, {"中国語", 2}, {"日本語", 3}]
+  end
 end
