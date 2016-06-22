@@ -37,7 +37,8 @@ defmodule Readly do
   defmacro __using__([struct: struct]) do
     quote location: :keep do
       import Readly, only: [readonly: 2]
-
+      
+      @enforce_keys :id
       defstruct Enum.map(unquote(struct), &(&1))
 
       Module.register_attribute(__MODULE__, :readley_datasource, accumulate: true)

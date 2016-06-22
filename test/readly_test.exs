@@ -26,7 +26,7 @@ defmodule ReadlyTest do
   end
 
   test "ensure build struct" do
-    assert %Language{} == %Language{en: "", ja: "", id: nil}
+    assert %Language{id: nil} == %Language{en: "", ja: "", id: nil}
   end
 
   test "automatic created function: english" do
