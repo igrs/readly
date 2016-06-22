@@ -61,6 +61,8 @@ defmodule Readly do
 
     if func_name do
       quote location: :keep do
+        if Enum.find(Module.get_attribute(__MODULE__, :readley_datasource), fn d -> d.id == unquote(item).id end), 
+          do: raise ArgumentError, message: "id is duplicated"
         Module.put_attribute(__MODULE__, :readley_datasource, unquote(item))
         def unquote(func_name)() do
           struct(__MODULE__, unquote(item))

@@ -138,4 +138,16 @@ defmodule ReadlyTest do
   test "ensure options function" do
     assert Language.options(:ja, :id) == [{"英語", 1}, {"中国語", 2}, {"日本語", 3}]
   end
+
+  test "raise exception if id is duplicated" do
+    assert_raise(ArgumentError, fn -> 
+      defmodule Gender do
+        use Readly, struct: %{id: nil, name: ""}
+
+        readonly %{id: 1, name: "Man"}, "man"
+        readonly %{id: 2, name: "Woman"}, :woman
+        readonly %{id: 1, name: "Trans"}, :trans
+      end
+    end)
+  end
 end
