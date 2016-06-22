@@ -41,6 +41,7 @@ Gender.trans   # %Gender{id: 3, name: "Trans"}
 Gender.all     # [%Gender{id: 1, name: "Man"}, %Gender{id: 2, name: "Woman"}, %Gender{id: 3, name: "Trans"}]
 Gender.reverse # [%Gender{id: 3, name: "Trans"}, %Gender{id: 2, name: "Woman"}, %Gender{id: 1, name: "Man"}]
 Gender.get(1)  # %Gender{id: 1, name: "Man"}
+Gender.options(:name, :id)  # [{"Man", 1}, {"Woman", 2} ,{"Trans", 3}]
 ```
 
 with Ecto
