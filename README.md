@@ -80,6 +80,15 @@ user.gender == Gender.woman
 
 NOTICE: Readly not use Ecto.Type behavior just implement function (type cast load dump)
 
+implement Phoenix.Html.Form protocol
+
+```elixir
+defimpl Phoenix.HTML.Safe, for: Gender do
+  def to_iodata(nil),  do: ""
+  def to_iodata(data), do: Integer.to_string(data.id)
+end
+```
+
 
 ## LICENSE
 See [LICENSE](https://github.com/igrs/readly/blob/master/LICENSE)
