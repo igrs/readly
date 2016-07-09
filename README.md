@@ -10,7 +10,7 @@ it is inspired by [ActiveHash](https://github.com/zilkey/active_hash).
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
 
-  * Add readly to your list of dependencies in `mix.exs`: 
+  * Add readly to your list of dependencies in `mix.exs`:
 
   elixir version >= 1.3
   ```elixir
@@ -25,7 +25,7 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
     [{:readly, "~> 0.0.4"}]
   end
   ```
-        
+
   * Ensure readly is started before your application:
 
   ```elixir
@@ -68,9 +68,9 @@ defmodule User do
     field :gender, Gender
   end
 
-  def changeset(user, params \\ :invalid) do
+  def changeset(user, params \\ %{}) do
     user
-    |> cast(params, ~w(name gender), ~w())
+    |> cast(params, [:name :gender])
   end
 end
 
