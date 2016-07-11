@@ -70,7 +70,7 @@ defmodule User do
 
   def changeset(user, params \\ %{}) do
     user
-    |> cast(params, [:name :gender])
+    |> cast(params, [:name, :gender])
   end
 end
 
