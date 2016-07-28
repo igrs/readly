@@ -132,7 +132,7 @@ defmodule ReadlyTest do
 
   test "it can not build a changeset with no errors by invalid id" do
     cs = User.changeset(%User{}, %{name: "igrs", language: 5})
-    assert cs.errors == [language: "is invalid"]
+    assert cs.errors == [language: {"is invalid", [type: ReadlyTest.Language]}]
   end
 
   test "ensure options function" do
@@ -140,7 +140,7 @@ defmodule ReadlyTest do
   end
 
   test "raise exception if id is duplicated" do
-    assert_raise(ArgumentError, fn -> 
+    assert_raise(ArgumentError, fn ->
       defmodule Gender do
         use Readly, struct: %{id: nil, name: ""}
 
