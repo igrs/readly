@@ -34,6 +34,8 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
   end
   ```
 
+  It is unnecessary if elixir version is 1.4 or later. (Application inference)
+
 ## Example
 ```elixir
 defmodule Gender do
