@@ -9,7 +9,7 @@ defmodule Readly.Mixfile do
       description: "Readly is a simple module that allow you to create readonly datasource module easily.",
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
-      deps: deps,
+      deps: deps(),
       package: [
         maintainers: ["igrs"],
         licenses: ["MIT"],

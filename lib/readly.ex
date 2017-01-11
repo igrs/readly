@@ -10,7 +10,7 @@ defmodule Readly do
         readonly %{id: 1, name: "Woman"}, :woman
         readonly %{id: 1, name: "Trans"}, :trans
       end
-  
+
   use with ecto
 
       defmodule User do
@@ -37,7 +37,7 @@ defmodule Readly do
   defmacro __using__([struct: struct]) do
     quote location: :keep do
       import Readly, only: [readonly: 2]
-      
+
       @enforce_keys :id
       defstruct Enum.map(unquote(struct), &(&1))
 
@@ -61,7 +61,7 @@ defmodule Readly do
 
     if func_name do
       quote location: :keep do
-        if Enum.find(Module.get_attribute(__MODULE__, :readley_datasource), fn d -> d.id == unquote(item).id end), 
+        if Enum.find(Module.get_attribute(__MODULE__, :readley_datasource), fn d -> d.id == unquote(item).id end),
           do: raise ArgumentError, message: "id is duplicated"
         Module.put_attribute(__MODULE__, :readley_datasource, unquote(item))
         def unquote(func_name)() do
@@ -75,14 +75,14 @@ defmodule Readly do
   defmacro __before_compile__(env) do
     quote location: :keep do
       def all do
-        list
+        list()
         |> Enum.sort(fn a, b -> a.id < b.id end)
       end
 
-      def reverse, do: all |> Enum.reverse
+      def reverse, do: all() |> Enum.reverse
 
       def get(id) when is_integer(id) do
-        list
+        list()
         |> Enum.find(&(&1.id == id))
       end
       def get(_), do: nil
@@ -113,7 +113,7 @@ defmodule Readly do
       end
 
       def options(label, value) do
-        all
+        all()
         |> Enum.map(fn d -> {Map.get(d, label), Map.get(d, value)} end)
       end
 
