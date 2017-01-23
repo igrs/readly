@@ -15,7 +15,7 @@ If [available in Hex](https://hex.pm/docs/publish), the package can be installed
   elixir version >= 1.3
   ```elixir
   def deps do
-    [{:readly, "~> 0.1.0"}]
+    [{:readly, "~> 0.1"}]
   end
   ```
 
